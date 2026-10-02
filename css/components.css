@@ -1,0 +1,456 @@
+/*
+ * components.css
+ * Componentes reutilizáveis: cabeçalho, logotipo tipográfico, navegação,
+ * personalização dos botões (origin/flow), rótulos, campos de formulário,
+ * rodapé e botão flutuante de WhatsApp.
+ */
+
+/* ════════════════ Rótulos e índices de seção ════════════════ */
+
+/* Pequeno rótulo acima de títulos */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-wood);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+}
+
+/* Numeração das seções (01, 02…) em estilo de placa de casa */
+.section-index {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-dark);
+  padding: 2px 10px;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-md);
+}
+
+.section-index--light {
+  color: var(--color-accent);
+}
+
+/* ════════════════ Cabeçalho ════════════════ */
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  height: var(--header-height);
+  transition: background-color 400ms var(--ease-out), box-shadow 400ms var(--ease-out);
+}
+
+/* Estado após rolar a página (classe aplicada em js/main.js) */
+.site-header.is-scrolled {
+  /* Sem backdrop-filter: ele prenderia o menu mobile (fixed) dentro do header */
+  background-color: rgba(245, 240, 232, 0.97);
+  box-shadow: 0 1px 0 var(--color-line);
+}
+
+.site-header__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Logotipo tipográfico ── */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-primary);
+}
+
+/* Chave antiga desenhada em CSS: argola (borda) + haste (::after) */
+.logo__key {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--color-accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.logo__key::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 3px;
+  height: 16px;
+  transform: translateX(-50%);
+  background: var(--color-accent);
+  /* Dentes da chave */
+  box-shadow: 4px 10px 0 0 var(--color-accent), 4px 5px 0 0 var(--color-accent);
+}
+
+.logo__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo__name {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.logo__sub {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-wood);
+  margin-top: 3px;
+}
+
+/* ── Botão do menu (mobile) ── */
+.nav-toggle {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-primary);
+  z-index: 2;
+}
+
+.nav-toggle__bar,
+.nav-toggle__bar::before,
+.nav-toggle__bar::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--color-secondary);
+  transition: transform 350ms var(--ease-out), opacity 200ms;
+}
+
+.nav-toggle__bar { position: relative; }
+
+.nav-toggle__bar::before,
+.nav-toggle__bar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle__bar::before { top: -6px; }
+.nav-toggle__bar::after  { top: 6px; }
+
+/* Ícone vira "X" quando o menu está aberto */
+.nav-toggle[aria-expanded='true'] .nav-toggle__bar { background: transparent; }
+.nav-toggle[aria-expanded='true'] .nav-toggle__bar::before { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded='true'] .nav-toggle__bar::after  { transform: translateY(-6px) rotate(-45deg); }
+
+/* Trava a rolagem da página com o menu mobile aberto */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* ── Navegação (mobile: painel lateral) ── */
+.site-nav {
+  position: fixed;
+  inset: 0;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  padding: var(--space-2xl) var(--gutter);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 500ms var(--ease-out), visibility 0s linear 500ms;
+}
+
+.site-nav.is-open {
+  transform: none;
+  visibility: visible;
+  transition: transform 500ms var(--ease-out), visibility 0s;
+}
+
+.site-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.site-nav__link {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  color: var(--color-secondary);
+}
+
+.site-nav__link--cta {
+  color: var(--color-accent);
+}
+
+/* Desktop: navegação em linha */
+@media (min-width: 960px) {
+  .nav-toggle { display: none; }
+
+  .site-nav {
+    position: static;
+    inset: auto;
+    background: none;
+    padding: 0;
+    transform: none;
+    visibility: visible;
+    transition: none;
+  }
+
+  .site-nav__list {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+
+  .site-nav__link {
+    position: relative;
+    font-size: var(--fs-sm);
+    color: var(--color-ink);
+  }
+
+  /* Sublinhado que "cresce" — detalhe de link, não de botão */
+  .site-nav__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 1px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 400ms var(--ease-out);
+  }
+
+  .site-nav__link:hover::after,
+  .site-nav__link:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .site-nav__link--cta {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+}
+
+/* ════════════════ Personalização dos botões ════════════════ */
+
+/* Contexto de empilhamento próprio: o overflow + border-radius recorta o
+   ripple de forma estável, sem deixar rastros de pintura ao encolher */
+.origin-btn {
+  isolation: isolate;
+}
+
+/* Origin primário: azul colonial com ripple dourado */
+.origin-btn-primary {
+  --ob-fill-color:   var(--color-accent);
+  --ob-text-on-fill: var(--color-ink);
+  --ob-radius:       var(--radius-sm);
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  border: 1px solid var(--color-primary);
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+/* Origin dourado (fundo escuro): mantém a paleta da marca */
+.origin-btn-gold {
+  --ob-fill-color:   var(--color-accent);
+  --ob-text-on-fill: var(--color-primary-deep);
+  --ob-radius:       var(--radius-sm);
+  background: transparent;
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  font-family: var(--font-display);
+}
+
+/* Flow padrão nas cores da marca */
+.flow-btn {
+  --flow-bg:         var(--color-primary);
+  --flow-text:       var(--color-primary);
+  --flow-text-hover: var(--color-secondary);
+  border-color: rgba(26, 58, 92, 0.35);
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+.flow-btn-gold {
+  --flow-bg:         var(--color-accent);
+  --flow-text:       var(--color-accent-dark);
+  --flow-text-hover: var(--color-ink);
+  border-color: rgba(201, 168, 76, 0.6);
+}
+
+/* ════════════════ Campos de formulário ════════════════ */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.field__label {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+/* Campo "linha de caderno": só a borda de baixo */
+.field__input {
+  width: 100%;
+  padding: var(--space-xs) 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1.5px solid var(--color-line);
+  border-radius: 0;
+  font-size: var(--fs-base);
+  transition: border-color 300ms var(--ease-out);
+}
+
+.field__input:focus {
+  outline: none;
+  border-bottom-color: var(--color-accent);
+}
+
+.field__input[aria-invalid='true'] {
+  border-bottom-color: var(--color-terracotta);
+}
+
+.field__input--area {
+  resize: vertical;
+  min-height: 84px;
+}
+
+select.field__input {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-ink-soft) 50%),
+                    linear-gradient(135deg, var(--color-ink-soft) 50%, transparent 50%);
+  background-position: calc(100% - 10px) 55%, calc(100% - 5px) 55%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+/* ════════════════ WhatsApp flutuante ════════════════ */
+
+.whatsapp-float {
+  --ob-radius: 999px;
+  position: fixed;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  z-index: 90;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  box-shadow: 0 12px 30px -10px rgba(18, 140, 126, 0.65);
+}
+
+.whatsapp-float__icon {
+  width: 26px;
+  height: 26px;
+}
+
+.whatsapp-float__label {
+  display: none;
+}
+
+/* Telas maiores: mostra o texto ao lado do ícone */
+@media (min-width: 768px) {
+  .whatsapp-float {
+    right: var(--space-xl);
+    bottom: var(--space-xl);
+    width: auto;
+    padding: 0 22px 0 18px;
+  }
+
+  .whatsapp-float__label {
+    display: inline;
+  }
+}
+
+/* ════════════════ Rodapé ════════════════ */
+
+.site-footer {
+  background: var(--color-primary-deep);
+  color: var(--color-secondary);
+  padding-top: var(--space-2xl);
+  overflow: hidden;
+}
+
+/* Marca gigante vazada, cortada pela borda */
+.site-footer__wordmark {
+  max-width: none;
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 2rem + 14vw, 15rem);
+  font-weight: 700;
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-line-light);
+  white-space: nowrap;
+}
+
+.site-footer__wordmark span {
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-accent);
+  -webkit-text-stroke: 0;
+  font-size: 0.32em;
+  letter-spacing: -0.02em;
+  margin-left: 0.2em;
+}
+
+.site-footer__bar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-block: var(--space-lg) calc(var(--space-2xl) + 24px);
+  margin-top: var(--space-lg);
+  border-top: 1px solid var(--color-line-light);
+  font-size: var(--fs-sm);
+  color: rgba(245, 240, 232, 0.7);
+}
+
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+}
+
+.site-footer__links a:hover,
+.site-footer__links a:focus-visible {
+  color: var(--color-accent);
+}
+
+@media (min-width: 768px) {
+  .site-footer__bar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--space-lg);
+  }
+}

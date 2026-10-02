@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+  index.html — Alves Imóveis
+  Página única do portfólio da imobiliária Alves Imóveis (Alfenas, MG).
+  Seções: hero · imóveis · diferenciais · simulador · depoimentos · contato · sobre.
+  Estilos em /css (variables → global → components → index) e scripts em /js.
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Alves Imóveis — Imobiliária em Alfenas, MG</title>
+  <meta name="description" content="Especializada em compra, venda e locação de imóveis residenciais e comerciais em Alfenas e região. 12 anos no mercado, mais de 800 famílias atendidas.">
+  <meta name="keywords" content="imobiliária, Alves Imóveis, imóveis Alfenas, casas à venda Alfenas, aluguel Alfenas MG">
+  <meta property="og:title" content="Alves Imóveis — Imobiliária em Alfenas, MG">
+  <meta property="og:description" content="Compra, venda e locação de imóveis em Alfenas e região. 12 anos, mais de 800 famílias atendidas.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200&q=80">
+  <meta name="theme-color" content="#1a3a5c">
+
+  <!-- Fontes: Poppins (títulos) + Roboto (corpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,500&family=Roboto:wght@300;400;500;700&display=swap">
+
+  <!-- Componentes de animação (no head para evitar flash de conteúdo) -->
+  <link rel="stylesheet" href="components/simple-anime.css">
+  <link rel="stylesheet" href="components/origin-button.css">
+
+  <!-- Estilos do projeto: variables → global → components → página -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ═════════════ CABEÇALHO ═════════════ -->
+  <header class="site-header" id="topo">
+    <div class="site-header__inner container">
+      <!-- Logotipo tipográfico: chave estilizada + nome -->
+      <a class="logo" href="#topo" aria-label="Alves Imóveis — voltar ao início">
+        <span class="logo__key" aria-hidden="true"></span>
+        <span class="logo__text">
+          <span class="logo__name">Alves</span>
+          <span class="logo__sub">imóveis · desde 2014</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="sr-only">Abrir menu</span>
+      </button>
+
+      <nav class="site-nav" id="menu-principal" aria-label="Menu principal">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="#imoveis">Imóveis</a></li>
+          <li><a class="site-nav__link" href="#servicos">Serviços</a></li>
+          <li><a class="site-nav__link" href="#simulador">Simulador</a></li>
+          <li><a class="site-nav__link" href="#depoimentos">Histórias</a></li>
+          <li><a class="site-nav__link" href="#sobre">Sobre</a></li>
+          <li><a class="site-nav__link site-nav__link--cta" href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ═════════════ HERO ═════════════
+         Imagem em tela cheia SEM overlay escuro; o texto fica numa "placa"
+         creme ancorada à esquerda, que transborda para a próxima seção. -->
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero__bg"
+           src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1600&q=85"
+           alt="Fachada de casa com varanda de madeira, telhado aparente e jardim gramado ao entardecer"
+           fetchpriority="high">
+
+      <!-- Etiqueta de coordenadas: detalhe de "planta de imóvel" -->
+      <p class="hero__coords fadeInDown" data-anime="600">
+        <span>Alfenas · MG</span>
+        <span>21°25′S — 45°56′O</span>
+      </p>
+
+      <div class="hero__plate">
+        <p class="eyebrow fadeInUp" data-anime="0">Imobiliária em Alfenas e região</p>
+        <h1 class="hero__title fadeInUp" id="hero-title" data-anime="0">
+          Cada chave abre <em>uma história.</em>
+        </h1>
+        <p class="hero__lead fadeInUp" data-anime="200">
+          Compra, venda e locação de imóveis residenciais e comerciais — com o
+          cuidado de quem conhece cada rua da cidade.
+        </p>
+        <div class="hero__actions fadeInUp" data-anime="400">
+          <a class="origin-btn origin-btn-primary"
+             href="https://wa.me/5535991234567?text=Ol%C3%A1!%20Quero%20falar%20com%20um%20corretor%20da%20Alves%20Im%C3%B3veis."
+             target="_blank" rel="noopener noreferrer">Falar com um corretor</a>
+          <a class="flow-btn" href="#imoveis">Ver imóveis</a>
+        </div>
+
+        <!-- Números da imobiliária -->
+        <dl class="hero__stats fadeInSlightUp" data-anime="550">
+          <div class="hero__stat">
+            <dt>anos de mercado</dt>
+            <dd>12</dd>
+          </div>
+          <div class="hero__stat">
+            <dt>famílias atendidas</dt>
+            <dd>800<span>+</span></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ═════════════ IMÓVEIS ═════════════
+         Destaque grande + lista lateral clicável (renderizados por js/main.js). -->
+    <section class="listings" id="imoveis" aria-labelledby="listings-title">
+      <div class="container">
+        <header class="listings__head">
+          <span class="section-index" aria-hidden="true">01</span>
+          <h2 class="listings__title fadeInLeft" id="listings-title" data-anime="0">
+            Imóveis<br>em destaque
+          </h2>
+          <!-- Filtros por tipo de negócio -->
+          <div class="filters fadeInUp" role="group" aria-label="Filtrar imóveis" data-anime="150">
+            <button class="filters__btn is-active" type="button" data-filter="todos" aria-pressed="true">Todos</button>
+            <button class="filters__btn" type="button" data-filter="venda" aria-pressed="false">Venda</button>
+            <button class="filters__btn" type="button" data-filter="locacao" aria-pressed="false">Locação</button>
+            <button class="filters__btn" type="button" data-filter="comercial" aria-pressed="false">Comercial</button>
+          </div>
+        </header>
+
+        <div class="listings__layout">
+          <!-- Imóvel em destaque -->
+          <article class="feature fadeInScale" data-anime="200" aria-live="polite">
+            <div class="feature__media">
+              <img class="feature__img" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=75" alt="Imóvel em destaque">
+              <span class="feature__badge">Venda</span>
+            </div>
+            <div class="feature__body">
+              <p class="feature__place">Jardim São Carlos</p>
+              <h3 class="feature__title">Casa com quintal e varanda</h3>
+              <ul class="feature__specs" aria-label="Características"></ul>
+              <div class="feature__footer">
+                <p class="feature__price">R$ 685.000</p>
+                <a class="origin-btn origin-btn-primary feature__cta" href="https://wa.me/5535991234567" target="_blank" rel="noopener noreferrer">Agendar visita</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Lista lateral -->
+          <aside class="side-list fadeInRight" data-anime="350" aria-label="Outros imóveis">
+            <p class="side-list__label">Toque para ver em destaque</p>
+            <ul class="side-list__items" id="side-list"></ul>
+            <p class="side-list__empty" hidden>Nenhum imóvel nessa categoria agora — fale com a gente que procuramos para você.</p>
+          </aside>
+        </div>
+
+        <noscript>
+          <p class="listings__noscript">Ative o JavaScript para navegar pelos imóveis, ou chame no WhatsApp: (35) 99123-4567.</p>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- ═════════════ DIFERENCIAIS (cards com preço) ═════════════
+         Cards em formato de etiqueta de chaveiro, pendurados em alturas diferentes. -->
+    <section class="services" id="servicos" aria-labelledby="services-title">
+      <div class="container services__inner">
+        <div class="services__intro">
+          <span class="section-index" aria-hidden="true">02</span>
+          <h2 class="services__title fadeInUp" id="services-title" data-anime="0">
+            Transparência <span>pendurada</span> na parede.
+          </h2>
+          <p class="services__text fadeInUp" data-anime="150">
+            Nada de taxa escondida em letra miúda. Estes são os nossos serviços
+            e quanto custa cada um — do jeitinho que fica no quadro de chaves
+            do escritório.
+          </p>
+        </div>
+
+        <ul class="tags">
+          <li class="tag fadeInUp" data-anime="100">
+            <span class="tag__hole" aria-hidden="true"></span>
+            <h3 class="tag__name">Avaliação do imóvel</h3>
+            <p class="tag__price">Grátis</p>
+            <p class="tag__desc">Visita técnica e laudo comparativo com imóveis vendidos no seu bairro.</p>
+          </li>
+          <li class="tag tag--featured fadeInUp" data-anime="250">
+            <span class="tag__hole" aria-hidden="true"></span>
+            <span class="tag__ribbon">mais procurado</span>
+            <h3 class="tag__name">Administração de aluguel</h3>
+            <p class="tag__price">8<small>% do aluguel</small></p>
+            <p class="tag__desc">Cobrança, vistorias com fotos, contratos e repasse garantido todo mês.</p>
+          </li>
+          <li class="tag fadeInUp" data-anime="400">
+            <span class="tag__hole" aria-hidden="true"></span>
+            <h3 class="tag__name">Venda com exclusividade</h3>
+            <p class="tag__price">6<small>% na venda</small></p>
+            <p class="tag__desc">Fotos profissionais, anúncio nos principais portais e corretor dedicado.</p>
+          </li>
+          <li class="tag fadeInUp" data-anime="550">
+            <span class="tag__hole" aria-hidden="true"></span>
+            <h3 class="tag__name">Assessoria de financiamento</h3>
+            <p class="tag__price"><small>R$</small>490</p>
+            <p class="tag__desc">Simulação em vários bancos, documentação e acompanhamento até a escritura.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═════════════ SIMULADOR (seção inesperada) ═════════════
+         Caderneta pautada que calcula a parcela estimada (Tabela Price). -->
+    <section class="simulator" id="simulador" aria-labelledby="simulator-title">
+      <div class="container simulator__inner">
+        <div class="simulator__result" aria-live="polite">
+          <span class="section-index section-index--light" aria-hidden="true">03</span>
+          <h2 class="simulator__title fadeInUp" id="simulator-title" data-anime="0">Quanto cabe no seu bolso?</h2>
+          <p class="simulator__label fadeInUp" data-anime="150">Parcela estimada</p>
+          <p class="simulator__value fadeInUp" data-anime="300">
+            <span class="simulator__currency">R$</span><output id="sim-installment" for="sim-price sim-down sim-years">0</output><span class="simulator__per">/mês</span>
+          </p>
+          <p class="simulator__note fadeInUp" data-anime="450">
+            Financiando <strong id="sim-financed">R$ 0</strong> em <strong id="sim-term">0 parcelas</strong>,
+            com juros de referência de 10,5% a.a. Valor ilustrativo — a taxa real
+            depende do banco e do seu perfil.
+          </p>
+        </div>
+
+        <form class="ledger fadeInRight" data-anime="200" id="sim-form" novalidate>
+          <div class="ledger__row">
+            <label class="ledger__label" for="sim-price">Valor do imóvel</label>
+            <output class="ledger__value" id="sim-price-out" for="sim-price">R$ 450.000</output>
+            <input class="ledger__range" type="range" id="sim-price" min="100000" max="1500000" step="10000" value="450000">
+          </div>
+          <div class="ledger__row">
+            <label class="ledger__label" for="sim-down">Entrada</label>
+            <output class="ledger__value" id="sim-down-out" for="sim-down">20%</output>
+            <input class="ledger__range" type="range" id="sim-down" min="10" max="80" step="5" value="20">
+          </div>
+          <div class="ledger__row">
+            <label class="ledger__label" for="sim-years">Prazo</label>
+            <output class="ledger__value" id="sim-years-out" for="sim-years">30 anos</output>
+            <input class="ledger__range" type="range" id="sim-years" min="5" max="35" step="1" value="30">
+          </div>
+          <a class="flow-btn flow-btn-gold ledger__cta" href="#contato">Quero uma simulação real</a>
+        </form>
+      </div>
+    </section>
+
+    <!-- ═════════════ DEPOIMENTOS (masonry irregular) ═════════════ -->
+    <section class="stories" id="depoimentos" aria-labelledby="stories-title">
+      <div class="container">
+        <div class="stories__grid">
+          <!-- O título participa do masonry como um bloco a mais -->
+          <div class="story story--title">
+            <span class="section-index" aria-hidden="true">04</span>
+            <h2 class="stories__title fadeInUp" id="stories-title" data-anime="0">
+              Quem já <em>abriu a porta</em> com a gente
+            </h2>
+          </div>
+
+          <figure class="story story--big fadeInUp" data-anime="100">
+            <blockquote>
+              <p>“Viemos de São Paulo sem conhecer ninguém em Alfenas. Em duas semanas
+              a Alves achou a casa, resolveu a papelada e ainda indicou a escola das crianças.”</p>
+            </blockquote>
+            <figcaption>Mariana e Rafael <span>compraram no Jardim São Carlos</span></figcaption>
+          </figure>
+
+          <figure class="story story--photo fadeInUp" data-anime="250">
+            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&q=75"
+                 alt="Sala aconchegante com sofá, almofadas e luz natural entrando pela janela" loading="lazy">
+            <blockquote>
+              <p>“A sala que a gente sonhava, com a luz da tarde batendo bem assim.”</p>
+            </blockquote>
+            <figcaption>Família Prado</figcaption>
+          </figure>
+
+          <figure class="story story--note fadeInUp" data-anime="400">
+            <span class="story__tape" aria-hidden="true"></span>
+            <blockquote>
+              <p>“Alugo três imóveis com eles há seis anos. Nunca atrasou um repasse.”</p>
+            </blockquote>
+            <figcaption>Seu Joaquim, proprietário</figcaption>
+          </figure>
+
+          <figure class="story story--person fadeInUp" data-anime="550">
+            <img class="story__avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=70"
+                 alt="Retrato de Lucas, homem jovem sorrindo" loading="lazy">
+            <blockquote>
+              <p>“Primeiro aluguel, longe de casa, estudando na UNIFAL. Me explicaram cada
+              cláusula do contrato sem pressa.”</p>
+            </blockquote>
+            <figcaption>Lucas <span>estudante, Centro</span></figcaption>
+          </figure>
+
+          <figure class="story story--accent fadeInUp" data-anime="700">
+            <blockquote>
+              <p>“Vendi a sala comercial em 41 dias.”</p>
+            </blockquote>
+            <figcaption>Dra. Helena <span>consultório no Centro</span></figcaption>
+          </figure>
+
+          <figure class="story story--person fadeInUp" data-anime="850">
+            <img class="story__avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=70"
+                 alt="Retrato de Beatriz, mulher de cabelos castanhos sorrindo" loading="lazy">
+            <blockquote>
+              <p>“Achei que financiar seria um pesadelo. A assessoria fez tudo parecer simples.”</p>
+            </blockquote>
+            <figcaption>Beatriz <span>primeiro imóvel próprio</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════ CONTATO (fundo colorido + CTA) ═════════════ -->
+    <section class="contact" id="contato" aria-labelledby="contact-title">
+      <div class="container contact__inner">
+        <div class="contact__pitch">
+          <span class="section-index section-index--light" aria-hidden="true">05</span>
+          <h2 class="contact__title fadeInUp" id="contact-title" data-anime="0">
+            Vamos encontrar <span>o seu canto?</span>
+          </h2>
+          <p class="contact__text fadeInUp" data-anime="150">
+            Conta pra gente o que você procura. Respondemos no WhatsApp, quase sempre no mesmo dia.
+          </p>
+          <a class="origin-btn origin-btn-primary contact__cta fadeInUp" data-anime="300"
+             href="https://wa.me/5535991234567?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Alves%20Im%C3%B3veis."
+             target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
+
+          <!-- Placa de informações: rótulo + valor em cada célula -->
+          <dl class="contact__info fadeInUp" data-anime="450">
+            <div class="contact__info-item">
+              <dt class="contact__info-label">Onde</dt>
+              <dd class="contact__info-value">Centro<br>Alfenas, MG</dd>
+            </div>
+            <div class="contact__info-item">
+              <dt class="contact__info-label">Quando</dt>
+              <dd class="contact__info-value">Seg a sex, 8h–18h<br>Sáb, 8h–12h</dd>
+            </div>
+            <div class="contact__info-item">
+              <dt class="contact__info-label">Instagram</dt>
+              <dd class="contact__info-value"><a href="https://www.instagram.com/alvesimoveis" target="_blank" rel="noopener noreferrer">@alvesimoveis</a></dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Formulário que monta a mensagem e abre o WhatsApp (nada é enviado a servidor) -->
+        <form class="contact-form fadeInLeft" id="contact-form" data-anime="200" novalidate>
+          <p class="contact-form__heading">Ou deixe um recado rápido</p>
+
+          <div class="field">
+            <label class="field__label" for="cf-name">Seu nome</label>
+            <input class="field__input" id="cf-name" name="name" type="text" autocomplete="name" maxlength="60" required>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="cf-interest">Estou procurando</label>
+            <select class="field__input" id="cf-interest" name="interest">
+              <option value="comprar">Comprar um imóvel</option>
+              <option value="alugar">Alugar um imóvel</option>
+              <option value="vender">Vender meu imóvel</option>
+              <option value="administrar">Colocar meu imóvel para alugar</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="cf-message">Detalhes (bairro, quartos, faixa de preço…)</label>
+            <textarea class="field__input field__input--area" id="cf-message" name="message" rows="3" maxlength="400"></textarea>
+          </div>
+
+          <p class="contact-form__error" id="cf-error" role="alert"></p>
+          <button class="origin-btn origin-btn-primary contact-form__submit" type="submit">Enviar pelo WhatsApp</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ═════════════ SOBRE (citação + foto pequena) ═════════════ -->
+    <section class="about" id="sobre" aria-labelledby="about-title">
+      <div class="container about__inner">
+        <span class="section-index" aria-hidden="true">06</span>
+        <h2 class="sr-only" id="about-title">Sobre a Alves Imóveis</h2>
+
+        <figure class="about__photo fadeInScale" data-anime="200">
+          <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=70"
+               alt="Sala aconchegante com sofá claro, almofadas azuis e quadros na parede" loading="lazy">
+          <figcaption>A primeira casa que entregamos, em 2014.</figcaption>
+        </figure>
+
+        <blockquote class="about__quote">
+          <p class="fadeInUp" data-anime="0">
+            A gente não vende metro quadrado. Ajuda famílias a escolher
+            <mark>onde vão tomar o café da manhã</mark> pelos próximos vinte anos.
+          </p>
+          <footer class="about__author fadeInUp" data-anime="150">— Família Alves, fundadores</footer>
+        </blockquote>
+
+        <ol class="about__timeline">
+          <li class="fadeInSlightUp" data-anime="150"><strong>2014</strong> Primeira sala, duas mesas e um quadro de chaves.</li>
+          <li class="fadeInSlightUp" data-anime="300"><strong>2019</strong> Começamos a administrar aluguéis para proprietários da região.</li>
+          <li class="fadeInSlightUp" data-anime="450"><strong>2026</strong> Mais de 800 famílias atendidas em Alfenas e cidades vizinhas.</li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═════════════ RODAPÉ ═════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="site-footer__wordmark" aria-hidden="true">Alves<span>imóveis</span></p>
+      <div class="site-footer__bar">
+        <p>© <span id="year">2026</span> Alves Imóveis · Alfenas, MG</p>
+        <ul class="site-footer__links">
+          <li><a href="https://www.instagram.com/alvesimoveis" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://wa.me/5535991234567" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="#topo">Voltar ao topo ↑</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flutuante -->
+  <a class="origin-btn origin-btn-whatsapp whatsapp-float"
+     href="https://wa.me/5535991234567?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Alves%20Im%C3%B3veis."
+     target="_blank" rel="noopener noreferrer" aria-label="Conversar no WhatsApp">
+    <svg class="whatsapp-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.22-8.23 8.22zm4.51-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/>
+    </svg>
+    <span class="whatsapp-float__label">Fale conosco</span>
+  </a>
+
+  <!-- Scripts: dados/interações da página antes do SimpleAnime -->
+  <script src="components/simple-anime.js"></script>
+  <script src="components/origin-button.js"></script>
+  <script src="js/main.js"></script>
+  <script>new SimpleAnime();</script>
+</body>
+</html>

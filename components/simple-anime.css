@@ -1,0 +1,44 @@
+/*
+ * simple-anime.css
+ * Estado inicial e final das animações de entrada (ver simple-anime.js).
+ * Todo [data-anime] começa invisível; a classe .anime é o estado final.
+ *
+ * Carregue este arquivo no <head> para evitar um "flash" do conteúdo visível
+ * antes de ele ser escondido.
+ */
+
+[data-anime] {
+  opacity: 0;
+}
+
+/* Direções de entrada (estado inicial) */
+.fadeInUp       { transform: translate3d(0, 32px, 0); }
+.fadeInDown     { transform: translate3d(0, -20px, 0); }
+.fadeInLeft     { transform: translate3d(-32px, 0, 0); }
+.fadeInRight    { transform: translate3d(32px, 0, 0); }
+.fadeInScale    { transform: scale(0.92); }
+.fadeInSlightUp { transform: translate3d(0, 14px, 0); }
+
+/*
+ * Movimento reduzido (preferência do sistema): mantém o fade e troca os
+ * deslocamentos grandes por um movimento mínimo. Precisa vir ANTES de .anime.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .fadeInUp,
+  .fadeInDown,
+  .fadeInLeft,
+  .fadeInRight,
+  .fadeInSlightUp { transform: translate3d(0, 8px, 0); }
+  .fadeInScale    { transform: scale(0.985); }
+}
+
+/* Estado final — declarado depois das direções para vencer a cascata */
+.anime {
+  opacity: 1;
+  transform: none;
+  transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1), opacity 800ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anime { transition-duration: 500ms; }
+}
